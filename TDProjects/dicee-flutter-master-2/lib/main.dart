@@ -18,6 +18,24 @@ void main() {
 class DicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Row(
+        children: <Widget>[
+          //With Expanded I can flex:  to change ratios
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Expanded(child: Image.asset('images/dice1.png')),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Expanded(child: Image.asset('images/dice2.png')),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
