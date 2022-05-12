@@ -1,5 +1,8 @@
+import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:bmi_calculator/icon_content.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -9,6 +12,7 @@ class InputPage extends StatefulWidget {
 const Color bottomContainerColor = Color(0xFFEB1555);
 const double bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xFF111328);
 
 class _InputPageState extends State<InputPage> {
   @override
@@ -23,51 +27,27 @@ class _InputPageState extends State<InputPage> {
               child: Row(
             children: <Widget>[
               Expanded(
-                child: ReusableCard(
-                  cardColor: activeCardColor,
-                  cardChild: Column(
-                    children: <Widget>[
-                      Icon(
-                        FontAwesomeIcons.mars,
-                        size: 80.0,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Text(
-                        'MALE',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Color(0xFF8D8E98),
-                        ),
-                      ),
-                    ],
+                child: GestureDetector(
+                  onTap: () {
+                    print('Male card was tapped');
+                  },
+                  child: ReusableCard(
+                    cardColor: activeCardColor,
+                    cardChild: IconContent(
+                      inputIconText: 'MALE',
+                      icon: FontAwesomeIcons.mars,
+                    ),
                   ),
                 ),
               ),
               Expanded(
                 child: ReusableCard(
-                    cardColor: activeCardColor,
-                    cardChild: Column(
-                      children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.venus,
-                          size: 80.0,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text(
-                          'FEMALE',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Color(0xFF8D8E98),
-                          ),
-                        ),
-                      ],
-                    )),
+                  cardColor: activeCardColor,
+                  cardChild: IconContent(
+                    inputIconText: 'FEMALE',
+                    icon: FontAwesomeIcons.venus,
+                  ),
+                ),
               ),
             ],
           )),
@@ -92,24 +72,6 @@ class _InputPageState extends State<InputPage> {
             width: double.infinity,
           )
         ],
-      ),
-    );
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  ReusableCard({@required this.cardColor, this.cardChild});
-
-  final Color cardColor;
-  final cardChild;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: cardColor,
-        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
