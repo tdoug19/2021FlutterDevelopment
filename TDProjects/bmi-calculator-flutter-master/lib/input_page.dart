@@ -30,38 +30,34 @@ class _InputPageState extends State<InputPage> {
               child: Row(
             children: <Widget>[
               Expanded(
-                child: GestureDetector(
-                  onTap: () {
+                child: ReusableCard(
+                  onPress: () {
                     setState(() {
                       selectedGender = Gender.male;
                     });
                   },
-                  child: ReusableCard(
-                    cardColor: selectedGender == Gender.male
-                        ? activeCardColor
-                        : inactiveCardColor,
-                    cardChild: IconContent(
-                      inputIconText: 'MALE',
-                      icon: FontAwesomeIcons.mars,
-                    ),
+                  cardColor: selectedGender == Gender.male
+                      ? activeCardColor
+                      : inactiveCardColor,
+                  cardChild: IconContent(
+                    inputIconText: 'MALE',
+                    icon: FontAwesomeIcons.mars,
                   ),
                 ),
               ),
               Expanded(
-                child: GestureDetector(
-                  onTap: () {
+                child: ReusableCard(
+                  onPress: () {
                     setState(() {
                       selectedGender = Gender.female;
                     });
                   },
-                  child: ReusableCard(
-                    cardColor: selectedGender == Gender.female
-                        ? activeCardColor
-                        : inactiveCardColor,
-                    cardChild: IconContent(
-                      inputIconText: 'FEMALE',
-                      icon: FontAwesomeIcons.venus,
-                    ),
+                  cardColor: selectedGender == Gender.female
+                      ? activeCardColor
+                      : inactiveCardColor,
+                  cardChild: IconContent(
+                    inputIconText: 'FEMALE',
+                    icon: FontAwesomeIcons.venus,
                   ),
                 ),
               ),
