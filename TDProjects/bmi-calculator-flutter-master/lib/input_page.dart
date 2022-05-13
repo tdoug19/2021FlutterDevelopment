@@ -13,8 +13,11 @@ const Color bottomContainerColor = Color(0xFFEB1555);
 const double bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
 const inactiveCardColor = Color(0xFF111328);
+enum Gender { male, female }
 
 class _InputPageState extends State<InputPage> {
+  Gender selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +32,14 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    print('Male card was tapped');
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
                   },
                   child: ReusableCard(
-                    cardColor: activeCardColor,
+                    cardColor: selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
                     cardChild: IconContent(
                       inputIconText: 'MALE',
                       icon: FontAwesomeIcons.mars,
@@ -41,11 +48,20 @@ class _InputPageState extends State<InputPage> {
                 ),
               ),
               Expanded(
-                child: ReusableCard(
-                  cardColor: activeCardColor,
-                  cardChild: IconContent(
-                    inputIconText: 'FEMALE',
-                    icon: FontAwesomeIcons.venus,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
+                  child: ReusableCard(
+                    cardColor: selectedGender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: IconContent(
+                      inputIconText: 'FEMALE',
+                      icon: FontAwesomeIcons.venus,
+                    ),
                   ),
                 ),
               ),
