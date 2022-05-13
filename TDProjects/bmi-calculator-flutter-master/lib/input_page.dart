@@ -11,6 +11,7 @@ class InputPage extends StatefulWidget {
 
 enum Gender { male, female }
 int userHeight = 180;
+int userWeight = 60;
 double _currentSliderValue = 50.0;
 
 class _InputPageState extends State<InputPage> {
@@ -105,10 +106,42 @@ class _InputPageState extends State<InputPage> {
               child: Row(
             children: <Widget>[
               Expanded(
-                child: ReusableCard(cardColor: kActiveCardColor),
+                child: ReusableCard(
+                  cardColor: kInactiveCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Weight',
+                        style: kIconTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Text(
+                            userWeight.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          Text(
+                            'kg',
+                            style: kIconTextStyle,
+                          )
+                        ],
+                      ),
+                      FloatingActionButton(
+                        child: Icon(
+                          Icons.add,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Expanded(
-                child: ReusableCard(cardColor: kActiveCardColor),
+                child: ReusableCard(cardColor: kInactiveCardColor),
               ),
             ],
           )),
