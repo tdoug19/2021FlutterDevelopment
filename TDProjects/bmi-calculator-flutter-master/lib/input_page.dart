@@ -1,8 +1,10 @@
+import 'package:bmi_calculator/results_page.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/icon_content.dart';
+import 'results_page.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class InputPage extends StatefulWidget {
 enum Gender { male, female }
 int userHeight = 180;
 int userWeight = 60;
+int userAge = 30;
 double _currentSliderValue = 50.0;
 
 class _InputPageState extends State<InputPage> {
@@ -103,53 +106,142 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-              child: Row(
-            children: <Widget>[
-              Expanded(
-                child: ReusableCard(
-                  cardColor: kInactiveCardColor,
-                  cardChild: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Weight',
-                        style: kIconTextStyle,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: [
-                          Text(
-                            userWeight.toString(),
-                            style: kNumberTextStyle,
-                          ),
-                          Text(
-                            'kg',
-                            style: kIconTextStyle,
-                          )
-                        ],
-                      ),
-                      FloatingActionButton(
-                        child: Icon(
-                          Icons.add,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard(
+                    cardColor: kInactiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Weight',
+                          style: kIconTextStyle,
                         ),
-                        onPressed: () {},
-                      ),
-                    ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              userWeight.toString(),
+                              style: kNumberTextStyle,
+                            ),
+                            Text(
+                              'kg',
+                              style: kIconTextStyle,
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              child: Icon(
+                                Icons.arrow_left,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  userWeight -= 1;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            FloatingActionButton(
+                              child: Icon(
+                                Icons.arrow_right,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  userWeight += 1;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: ReusableCard(cardColor: kInactiveCardColor),
-              ),
-            ],
-          )),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10.0),
-            height: kBottomContainerHeight,
-            width: double.infinity,
+                Expanded(
+                  child: ReusableCard(
+                    cardColor: kInactiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Age',
+                          style: kIconTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              userAge.toString(),
+                              style: kNumberTextStyle,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              child: Icon(
+                                Icons.arrow_left,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  userAge--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            FloatingActionButton(
+                              child: Icon(
+                                Icons.arrow_right,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  userAge++;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultsPage(),
+                  ));
+            },
+            child: Container(
+              child: Text('Calculate'),
+              color: kBottomContainerColor,
+              margin: EdgeInsets.only(top: 10.0),
+              height: kBottomContainerHeight,
+              width: double.infinity,
+            ),
           )
         ],
       ),
